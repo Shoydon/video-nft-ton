@@ -7,7 +7,7 @@ import pinata from '../key.json'
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { TonClient } from "@ton/ton";
-import { Sender, toNano, Address } from "@ton/core";
+import { toNano } from "@ton/core";
 import {VideoNft} from '@/compileCode/videoNft'
 import {TonConnectSender} from '../../hooks/TonConnectSender.ts'
 function Create() {
@@ -29,7 +29,7 @@ function Create() {
     const handleChange = (event) => {
         const { name, value } = event.target;
         if (name === "price") {
-            if (value <= 0) return
+            if (value < 0) return
         }
         setFormInfo((prevState) => ({ ...prevState, [name]: value }));
     };
@@ -55,6 +55,12 @@ function Create() {
         e.preventDefault();
         // console.log(nftFile);
         // console.log(forminfo);
+        if(forminfo.price <= 0){
+            toast.error("Price must be greater than 0", {
+                position: "top-center",
+            })
+            return;
+        }
 
         toast.info("Uploading NFT file", {
             position: "top-center",
@@ -199,7 +205,7 @@ function Create() {
 
                         <div class="mb-4">
                             <label for="price" class="block mb-2 text-sm font-medium text-white">NFT Price</label>
-                            <input onChange={handleChange} type="number" id="price" name='price' value={forminfo.price} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0.0001 XRP" />
+                            <input onChange={handleChange} type="number" id="price" name='price' value={forminfo.price} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0.0001 TON" step="0.000001" />
                         </div>
 
                         <div className='text-center'>

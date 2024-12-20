@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { TonConnectSender } from '../hooks/TonConnectSender';
 import { toast } from 'react-toastify'
@@ -10,7 +10,7 @@ import { TonClient } from "@ton/ton";
 import { VideoNft } from '@/compileCode/videoNft';
 import { toNano } from "@ton/core";
 
-function Cards({ item, currNft, player, setPlayer, setCurrNft, account, idx, processing, setProcessing, marketplace, tonConnector }) {
+function Cards({ item, player, setPlayer, setCurrNft, idx, processing, setProcessing, tonConnector }) {
 
   const [liked, setLiked] = useState(false)
   const [disliked, setDisliked] = useState(false)

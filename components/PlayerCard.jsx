@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import '../App.css';
 
 
 
-function PlayerCard({ item, player, setPlayer, setCurrNft, currNft }) {
+function PlayerCard({ item, player, setPlayer }) {
 
   function close() {
     player = false;
     setPlayer(false);
     console.log("close");
-    setCurrNft(null);
-    currNft = null;
     // console.log("player: ", player);
     // console.log("curr nft: ", currNft);
   }

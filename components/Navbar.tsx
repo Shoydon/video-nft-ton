@@ -1,26 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { TonConnectButton } from '@tonconnect/ui-react'
 
 export default function Navbar() {
-  const [navBackground, setNavBackground] = useState('bg-transparent')
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const show = window.scrollY > 50
-      if (show) {
-        setNavBackground('bg-white dark:bg-black')
-      } else {
-        setNavBackground('bg-transparent')
-      }
-    }
-    document.addEventListener('scroll', handleScroll)
-    return () => {
-      document.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   return (
     <div className="fixed z-10 backdrop-blur-sm">

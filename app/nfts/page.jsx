@@ -11,7 +11,7 @@ import { useTonConnectUI } from "@tonconnect/ui-react";
 
 // import { toast } from 'react-toastify';
 
-function NFTs({ setNFTitem }) {
+function NFTs() {
 
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
@@ -34,7 +34,7 @@ function NFTs({ setNFTitem }) {
     const items = await VideoNftContract.getGetFiles();
     console.log("items: ", items);
 
-    let itemsArray = Array.from(items).map(([key, value]) => ({
+    let itemsArray = Array.from(items).map(([, value]) => ({
       ipfsHash: value.ipfsHash,
       price: Number(value.price),
       owner: value.owner.toString()
@@ -100,6 +100,7 @@ function NFTs({ setNFTitem }) {
           (items.length > 0 ?
             items.map((item, idx) => (
               <Cards 
+                key={idx}
                 item={item} 
                 currNft={currNft} 
                 player={player} 
